@@ -12,18 +12,30 @@ Product.init(
     // define columns
     id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
     },
     product_name: {
-
+      type: DataTypes.STRING,
+      allowNull: false
     },
     price: {
-
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseFloat
+      type: Number.parseFloat(DataTypes.DECIMAL),
+      allowNull: false,
     },
     stock: {
-      type: DataTypes.INTEGER,
+      type: Number.parseInt(DataTypes.INTEGER),
+      allowNull: false,
+      defaultValue: 10,
     },
     category_id: {
       type: DataTypes.INTEGER,
+      references: {
+        model: 'category',
+        key: 'id'
+      },
     }
   },
   {
